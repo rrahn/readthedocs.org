@@ -278,7 +278,7 @@ class UpdateDocsTask(Task):
         cmd.extend(requirements)
         self.build_env.run(
             *cmd,
-            bin_path=self.project.venv_bin(version=self.version.slug, bin=None)
+            bin_path=self.project.venv_bin(version=self.version.slug)
         )
 
         # Handle requirements
@@ -303,8 +303,7 @@ class UpdateDocsTask(Task):
                 '--exists-action=w',
                 '-r{0}'.format(requirements_file_path),
                 cwd=checkout_path,
-                bin_path=self.project.venv_bin(version=self.version.slug,
-                                               bin=None)
+                bin_path=self.project.venv_bin(version=self.version.slug)
             )
 
         # Handle setup.py
@@ -319,8 +318,7 @@ class UpdateDocsTask(Task):
                     '--ignore-installed',
                     '.',
                     cwd=checkout_path,
-                    bin_path=self.project.venv_bin(version=self.version.slug,
-                                                   bin=None)
+                    bin_path=self.project.venv_bin(version=self.version.slug)
                 )
             else:
                 self.build_env.run(
@@ -329,8 +327,7 @@ class UpdateDocsTask(Task):
                     'install',
                     '--force',
                     cwd=checkout_path,
-                    bin_path=self.project.venv_bin(version=self.version.slug,
-                                                   bin=None)
+                    bin_path=self.project.venv_bin(version=self.version.slug)
                 )
 
     def build_docs(self):
